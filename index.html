@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          text-align: center;
+          margin-top: 100px;
+        }
+        button {
+          padding: 10px 20px;
+          font-size: 20px;
+          cursor: pointer;
+        }
+        #result {
+          margin-top: 30px;
+          font-size: 24px;
+          font-weight: bold;
+        }
+        a {
+          display: block;
+          margin-top: 20px;
+          font-size: 18px;
+          color: blue;
+          text-decoration: underline;
+        }
+      </style>
+<body>
+  <h1>今晚吃什麼？</h1>
+  <button onclick="chooseDinner()">隨機選擇！</button>
+  <div id="result"></div>
+  <script>
+    const dinnerOptions = [
+      "拉麵", "火鍋", "漢堡", "壽司", "義大利麵", 
+      "燒肉", "便當", "炸雞", "牛排", "咖哩飯"
+    ];
+  
+    function chooseDinner() {
+  const randomIndex = Math.floor(Math.random() * dinnerOptions.length);
+  const selectedDinner = dinnerOptions[randomIndex];
+  const resultDiv = document.getElementById('result');
+
+  resultDiv.innerHTML = `
+    ${selectedDinner}<br>
+    <a href="https://www.google.com/maps/search/${encodeURIComponent(selectedDinner)} 餐廳" target="_blank">
+      找找附近的「${selectedDinner}」
+    </a>
+  `;
+}
+  </script>
+</body>
+</html>

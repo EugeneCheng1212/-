@@ -30,8 +30,8 @@
   </style>
 </head>
 <body>
-  <h1>今晚吃什麼？</h1>
-  <button id="pickButton" onclick="chooseDinner()">隨機選擇！</button>
+  <h1>想不到吃什麼？</h1>
+  <button id="pickButton" onclick="chooseDinner()">媽的給我吃這個！</button>
   <div id="result"></div>
 
   <script>
@@ -47,7 +47,7 @@
       const button = document.getElementById('pickButton');
 
       if (clickCount > 6) {
-        resultDiv.innerHTML = "點太多次囉！";
+        resultDiv.innerHTML = "你他媽真龜毛！";
 
         // 讓按鈕越來越小
         let newSize = Math.max(5, 20 - (clickCount - 6) * 2); 

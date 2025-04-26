@@ -1,51 +1,72 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-    <style>
-        body {
-          font-family: Arial, sans-serif;
-          text-align: center;
-          margin-top: 100px;
-        }
-        button {
-          padding: 10px 20px;
-          font-size: 20px;
-          cursor: pointer;
-        }
-        #result {
-          margin-top: 30px;
-          font-size: 24px;
-          font-weight: bold;
-        }
-        a {
-          display: block;
-          margin-top: 20px;
-          font-size: 18px;
-          color: blue;
-          text-decoration: underline;
-        }
-      </style>
+<head>
+  <meta charset="UTF-8">
+  <title>今晚吃什麼？</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease; /* 按鈕變小時加個順暢動畫 */
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    a {
+      display: block;
+      margin-top: 20px;
+      font-size: 18px;
+      color: blue;
+      text-decoration: underline;
+    }
+  </style>
+</head>
 <body>
   <h1>今晚吃什麼？</h1>
-  <button onclick="chooseDinner()">隨機選擇！</button>
+  <button id="pickButton" onclick="chooseDinner()">隨機選擇！</button>
   <div id="result"></div>
+
   <script>
     const dinnerOptions = [
-      "拉麵", "火鍋", "漢堡", "壽司", "義大利麵", 
+      "拉麵", "火鍋", "漢堡", "壽司", "義大利麵",
       "燒肉", "便當", "炸雞", "牛排", "咖哩飯"
     ];
-  
-    function chooseDinner() {
-  const randomIndex = Math.floor(Math.random() * dinnerOptions.length);
-  const selectedDinner = dinnerOptions[randomIndex];
-  const resultDiv = document.getElementById('result');
+    let clickCount = 0;
 
-  resultDiv.innerHTML = `
-    ${selectedDinner}<br>
-    <a href="https://www.google.com/maps/search/${encodeURIComponent(selectedDinner)} 餐廳" target="_blank">
-      找找附近的「${selectedDinner}」
-    </a>
-  `;
-}
+    function chooseDinner() {
+      clickCount++;
+      const resultDiv = document.getElementById('result');
+      const button = document.getElementById('pickButton');
+
+      if (clickCount > 6) {
+        resultDiv.innerHTML = "點太多次囉！";
+
+        // 讓按鈕越來越小
+        let newSize = Math.max(5, 20 - (clickCount - 6) * 2); 
+        button.style.fontSize = newSize + "px";
+        button.style.padding = (newSize / 2) + "px " + (newSize) + "px";
+
+        return;
+      }
+
+      const randomIndex = Math.floor(Math.random() * dinnerOptions.length);
+      const selectedDinner = dinnerOptions[randomIndex];
+
+      resultDiv.innerHTML = `
+        ${selectedDinner}<br>
+        <a href="https://www.google.com/maps/search/${encodeURIComponent(selectedDinner)} 餐廳" target="_blank">
+          在 Google 地圖上找「${selectedDinner}」
+        </a>
+      `;
+    }
   </script>
 </body>
 </html>

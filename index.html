@@ -32,6 +32,7 @@
 <body>
   <h1>想不到吃什麼？</h1>
   <button id="pickButton" onclick="chooseDinner()">媽的給我吃這個！</button>
+  <div id="warning">不要亂按！！</div>
   <div id="result"></div>
 
   <script>
@@ -59,7 +60,7 @@
       const resultDiv = document.getElementById('result');
       const button = document.getElementById('pickButton');
 
-      if (clickCount > 15) {
+      if (clickCount > 15&&clickCount < 25) {
         resultDiv.innerHTML = "你他媽真龜毛！";
 
         // 讓按鈕越來越小
@@ -70,6 +71,14 @@
         return;
       }
 
+      
+      if (clickCount >= 25) {
+        // 15次之後，清空整個畫面只剩下大大的警告
+        document.body.innerHTML = '<div id="warning">不要亂按！！</div>';
+        document.getElementById('warning').style.display = 'block';
+        document.body.style.marginTop = "200px"; // 讓字居中一點
+        return;
+      }
       const randomIndex = Math.floor(Math.random() * dinnerOptions.length);
       const selectedDinner = dinnerOptions[randomIndex];
 

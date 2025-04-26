@@ -86,14 +86,16 @@
         return;
       }
       const randomIndex = Math.floor(Math.random() * dinnerOptions.length);
-      const selectedDinner = dinnerOptions[randomIndex];
+const selectedDinner = dinnerOptions[randomIndex];
 
-      resultDiv.innerHTML = `
-        ${selectedDinner}<br>
-        <a href="https://www.google.com/maps/search/${encodeURIComponent(selectedDinner)} 餐廳" target="_blank">
-          在 Google 地圖上找「${selectedDinner}」
-        </a>
-      `;
+const searchUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedDinner + ' 餐廳')}`;
+
+resultDiv.innerHTML = `
+  ${selectedDinner}<br>
+  <a href="${searchUrl}" target="_blank">
+    在 Google 地圖上找「${selectedDinner}」
+  </a>
+`;
     }
   </script>
 </body>

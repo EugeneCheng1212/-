@@ -85,9 +85,8 @@
         document.body.style.marginTop = "200px"; // 讓字居中一點
         return;
       }
-      const randomIndex = Math.floor(Math.random() * dinnerOptions.length);
+const randomIndex = Math.floor(Math.random() * dinnerOptions.length);
 const selectedDinner = dinnerOptions[randomIndex];
-
 const searchUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedDinner + ' 餐廳')}`;
 
 resultDiv.innerHTML = `

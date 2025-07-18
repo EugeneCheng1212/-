@@ -13,7 +13,7 @@
       padding: 10px 20px;
       font-size: 40px;
       cursor: pointer;
-      transition: all 0.3s ease; /* 按鈕變小時加個順暢動畫 */
+      transition: all 0.3s ease; 
     }
     #result {
       margin-top: 30px;
@@ -31,7 +31,7 @@
       font-size: 300px;
       color: red;
       font-weight: bold;
-      display: none; /* 預設隱藏 */
+      display: none;
     }
   </style>
 </head>
@@ -40,7 +40,6 @@
   <button id="pickButton" onclick="chooseDinner()">給我吃這個！</button>
   <div id="warning">不要亂按！！</div>
   <div id="result"></div>
-
   <script>
     const dinnerOptions = [
       "滷肉飯", "紅燒牛肉麵", "白醬義大利麵", "炸雞腿飯", "壽司拼盤", "韓式泡菜鍋", "蔥爆牛肉", "三杯雞", "打拋豬", "味噌拉麵", "鍋燒意麵", "雞肉咖哩飯", "炒烏龍麵", "番茄炒蛋飯", "鴨腿便當",
@@ -59,35 +58,26 @@
 ,"台式鹽水雞", "香腸炒飯", "清燉牛肉麵", "叉燒拉麵", "青椒牛柳飯", "鮮蝦餛飩麵", "雞絲豆腐煲", "牛奶火鍋", "黑松露燉飯", "起司豬排飯", "干鍋牛肚", "酥炸花枝圈", "白酒蛤蜊麵", "炙燒牛肉丼", "辣味鴨血粉絲煲"
 ,"南瓜雞肉燉飯", "奶油培根燉飯", "海鮮泡飯", "鮮蝦蒸蛋", "魚香茄子飯", "羊肉炒麵", "蔬菜咖哩飯", "炸豆腐便當", "青花菜牛肉飯", "紅酒牛舌燉飯"   ];
     let clickCount = 0;
-
     function chooseDinner() {
       clickCount++;
       const resultDiv = document.getElementById('result');
       const button = document.getElementById('pickButton');
-
       if (clickCount > 15 && clickCount < 25) {
         resultDiv.innerHTML = "你真龜毛！";
-
-        // 讓按鈕越來越小
         let newSize = Math.max(5, 20 - (clickCount - 15) * 2); 
         button.style.fontSize = newSize + "px";
         button.style.padding = (newSize / 2) + "px " + (newSize) + "px";
-
         return;
       }
-
-      
       if (clickCount >= 25) {
-        // 15次之後，清空整個畫面只剩下大大的警告
         document.body.innerHTML = '<div id="warning">不要亂按！！</div>';
         document.getElementById('warning').style.display = 'block';
-        document.body.style.marginTop = "200px"; // 讓字居中一點
+        document.body.style.marginTop = "200px"; 
         return;
       }
 const randomIndex = Math.floor(Math.random() * dinnerOptions.length);
 const selectedDinner = dinnerOptions[randomIndex];
 const searchUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedDinner + ' 餐廳')}`;
-
 resultDiv.innerHTML = `
   ${selectedDinner}<br>
   <a href="${searchUrl}" target="_blank">

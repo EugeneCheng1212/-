@@ -37,7 +37,7 @@
 </head>
 <body>
   <h1>想不到吃什麼？</h1>
-  <button id="pickButton" onclick="chooseDinner()">媽的給我吃這個！</button>
+  <button id="pickButton" onclick="chooseDinner()">給我吃這個！</button>
   <div id="warning">不要亂按！！</div>
   <div id="result"></div>
 
@@ -66,7 +66,7 @@
       const button = document.getElementById('pickButton');
 
       if (clickCount > 15 && clickCount < 25) {
-        resultDiv.innerHTML = "你他媽真龜毛！";
+        resultDiv.innerHTML = "你真龜毛！";
 
         // 讓按鈕越來越小
         let newSize = Math.max(5, 20 - (clickCount - 15) * 2); 
